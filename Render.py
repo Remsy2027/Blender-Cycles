@@ -9,7 +9,7 @@ bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete()
 
 # Replace the filepath with the location of your GLB file
-filepath = "C:/Users/Remsy/Downloads/" + email + ".glb"
+filepath = "C:/Users/Remsy/PycharmProjects/BlenderCycles/Assets/" + email + ".glb"
 
 # Import the GLB file
 bpy.ops.import_scene.gltf(filepath=filepath)
