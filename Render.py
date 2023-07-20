@@ -9,7 +9,7 @@ bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete()
 
 # Replace the filepath with the location of your GLB file
-filepath = "C:/Users/Remsy/PycharmProjects/BlenderCycles/Assets/" + email + ".glb"
+filepath = "Assets/" + email + ".glb"
 
 # Import the GLB file
 bpy.ops.import_scene.gltf(filepath=filepath)
@@ -150,6 +150,6 @@ view_layer.use_pass_shadow = True
 view_layer.use_pass_emit = True
 
 # Render the image to a file
-output_path = 'C:/Users/Remsy/PycharmProjects/BlenderCycles/Assets/Render_Images/' + email + '_Render_Image.PNG'
+output_path = 'Assets/Render_Images/' + email + '_Render_Image.PNG'
 bpy.context.scene.render.filepath = output_path
 bpy.ops.render.render(write_still=True)

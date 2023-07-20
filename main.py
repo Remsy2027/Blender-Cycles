@@ -1,12 +1,20 @@
+import ssl
 from flask import Flask, render_template, request, jsonify
 import subprocess
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
+CORS(app, origins=["*"])
+
+context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+context.load_cert_chain('/home/remsy/certificate.pem')
 
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+
 
 @app.route('/send_email', methods=['POST'])
 def send_email():
@@ -16,11 +24,13 @@ def send_email():
         return 'Email not provided', 400
 
     # Execute the batch file
-    subprocess.Popen(['render.bat', email])
+    subprocess.Popen(['bash', 'Render.sh', email])
 
     return 'Rendering started. The image will be sent to {}'.format(email)
 
+
 @app.route('/upload_glb', methods=['POST'])
+
 def upload_glb():
     email = request.form.get('email')
     glb_file = request.files['glbData']
@@ -36,5 +46,6 @@ def upload_glb():
 
     return jsonify({'message': 'GLB file received and saved successfully'}), 200
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+        app.run(host='0.0.0.0', port=5000, ssl_context='adhoc')

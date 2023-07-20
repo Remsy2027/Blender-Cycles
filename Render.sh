@@ -6,7 +6,7 @@ email=$1
 username=$(echo "$email" | cut -d '@' -f 1)
 
 script_path="Render.py"
-output_path="/path/to/Render_Images/${username}_Render_Image.png"
+output_path="Assets/Render_Images${username}_Render_Image.png"
 
 # Run Blender to render the image
 blender -b -P "$script_path" -- "$email"
