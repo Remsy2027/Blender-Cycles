@@ -133,7 +133,7 @@ bpy.context.scene.cycles.device = 'GPU'
 # Set resolution and samples
 bpy.context.scene.render.resolution_x = 1920
 bpy.context.scene.render.resolution_y = 1080
-bpy.context.scene.cycles.samples = 200
+bpy.context.scene.cycles.samples = 2
 
 # Enable denoising
 bpy.context.scene.cycles.use_denoising = True
