@@ -20,7 +20,12 @@ def render_worker():
     while True:
         # Get the next request from the queue (blocks if the queue is empty)
         email, glb_file = request_queue.get()
-        file_path = os.path.join('Assets', f'{email}.glb')
+
+        # Remove the word after @ from the email address
+        email_without_domain = email.split('@')[0]
+
+        # Save the GLB file to a folder on the server
+        file_path = os.path.join('Assets', f'{email_without_domain}.glb')
         glb_file.save(file_path)
 
         # Your code to process the GLB data or trigger other actions based on the email and GLB data
