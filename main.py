@@ -1,14 +1,20 @@
 from flask import Flask, request, jsonify
+import ssl
 import subprocess
 import os
 from queue import Queue
 from threading import Thread
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins=["*"])
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
 
 # Create a queue to hold the GLB file requests
 request_queue = Queue()
+
+context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+context.load_cert_chain('/home/remsy/certificate.pem')
 
 def render_worker():
     while True:
