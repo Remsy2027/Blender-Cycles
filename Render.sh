@@ -6,7 +6,7 @@ email=$1
 username=$(echo "$email" | cut -d '@' -f 1)
 
 script_path="Render.py"
-output_path="/home/remsy/Documents/GitHub/Blender-Cycles/Assets/Render_Images/${username}_Render_Image.png"
+output_path="Assets/Render_Images/${username}_Render_Image.PNG"
 
 # Run Blender to render the image
 blender -b -P "$script_path" -- "$email"

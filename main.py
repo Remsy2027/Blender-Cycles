@@ -1,4 +1,3 @@
-import ssl
 from flask import Flask, request, jsonify
 import subprocess
 import os
@@ -45,23 +44,18 @@ def send_email():
 @app.route('/upload_glb', methods=['POST'])
 def upload_glb():
     email = request.form.get('email')
-
-    # Remove the words after "@" from the email address
-    email_without_domain = email.split('@')[0]
+    print(email)
 
     glb_file = request.files['glbData']
-
-    if not email_without_domain or not glb_file:
-        return jsonify({'message': 'Email or GLB file not provided'}), 400
 
     # Get the binary data of the GLB file
     file_data = glb_file.read()
 
     # Save the GLB file to a temporary file path on the server
-    temp_file_path = os.path.join('Assets', f'{email_without_domain}.glb')
+    temp_file_path = os.path.join('Assets', f'{email}.glb')
 
     # Add the request to the queue for processing by the worker thread
-    request_queue.put((email_without_domain, temp_file_path, file_data))
+    request_queue.put((email, temp_file_path, file_data))
 
     return jsonify({'message': 'GLB file received and added to the queue for rendering'}), 200
 

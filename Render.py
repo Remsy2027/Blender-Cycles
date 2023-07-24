@@ -2,7 +2,7 @@ import bpy
 import sys
 
 #Get Email
-email = sys.argv[5].split('@')[0]
+email = sys.argv[5]
 
 # For Delete Default Objects
 bpy.ops.object.select_all(action='SELECT')
@@ -150,6 +150,6 @@ view_layer.use_pass_shadow = True
 view_layer.use_pass_emit = True
 
 # Render the image to a file
-output_path = 'Assets/Render_Images/' + email + '_Render_Image.PNG'
+output_path = 'Assets/Render_Images/' + email.split('@')[0] + '_Render_Image.PNG'
 bpy.context.scene.render.filepath = output_path
 bpy.ops.render.render(write_still=True)
