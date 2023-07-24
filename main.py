@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-import ssl
 import subprocess
 import os
 from queue import Queue
@@ -12,9 +11,6 @@ app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
 
 # Create a queue to hold the GLB file requests
 request_queue = Queue()
-
-context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-context.load_cert_chain('/home/remsy/certificate.pem')
 
 def render_worker():
     while True:
@@ -66,4 +62,4 @@ def upload_glb():
     return jsonify({'message': 'GLB file received and added to the queue for rendering'}), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, ssl_context='adhoc')
+    app.run(host='0.0.0.0', port=5000)
