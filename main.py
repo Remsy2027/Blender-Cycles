@@ -4,6 +4,7 @@ import os
 from queue import Queue
 from threading import Thread
 from flask_cors import CORS
+import datetime
 
 app = Flask(__name__)
 CORS(app, origins=["*"])
@@ -54,7 +55,7 @@ def upload_glb():
     file_data = glb_file.read()
 
     # Save the GLB file to a temporary file path on the server
-    temp_file_path = os.path.join('Assets', f'{email}.glb')
+    temp_file_path = os.path.join('Assets/GLB_Files', f'{email}.glb')
 
     # Add the request to the queue for processing by the worker thread
     request_queue.put((email, temp_file_path, file_data))
