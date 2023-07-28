@@ -100,7 +100,7 @@ for light in lights:
     blackbody_node = tree.nodes.new(type='ShaderNodeBlackbody')
 
     # Set the desired temperature for the blackbody color
-    temperature = 5000  # Adjust the temperature as desired
+    temperature = 7000  # Adjust the temperature as desired
     blackbody_node.inputs['Temperature'].default_value = temperature
 
     # Add the Emission node
@@ -128,13 +128,13 @@ bpy.context.scene.camera = camera_obj
 # Set the rendering engine to Cycles
 bpy.context.scene.render.engine = 'CYCLES'
 cycles_prefs = bpy.context.preferences.addons['cycles'].preferences
-cycles_prefs.compute_device_type = 'CUDA'
+cycles_prefs.compute_device_type = 'OPTIX'
 bpy.context.scene.cycles.device = 'GPU'
 
 # Set resolution and samples
 bpy.context.scene.render.resolution_x = 1920
 bpy.context.scene.render.resolution_y = 1080
-bpy.context.scene.cycles.samples = 1
+bpy.context.scene.cycles.samples = 200
 
 # Enable denoising
 bpy.context.scene.cycles.use_denoising = True
@@ -142,7 +142,11 @@ bpy.context.scene.cycles.denoiser = 'OPENIMAGEDENOISE'
 
 # Set view settings
 bpy.context.scene.view_settings.look = 'High Contrast'
-bpy.context.scene.view_settings.exposure = -1
+bpy.context.scene.view_settings.exposure = -2
+bpy.context.scene.cycles.diffuse_bounces = 6
+bpy.context.scene.cycles.glossy_bounces = 6
+bpy.context.scene.cycles.sample_clamp_direct = 9
+bpy.context.scene.cycles.sample_clamp_indirect = 9
 
 # Enable passes
 view_layer = bpy.context.view_layer
