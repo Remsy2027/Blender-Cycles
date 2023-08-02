@@ -5,8 +5,8 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 
 def send_email_with_image(email, image_path):
-    Sender_Email = "mohitphotoart1980@gmail.com"
-    Sender_Password = "jljjrzsconxuopry"
+    Sender_Email = "viscommercecdn@gmail.com"
+    Sender_Password = "ehwcpeyvtawlgmiu"
     Receiver_Email = email
 
     # Compose the email message
@@ -15,7 +15,7 @@ def send_email_with_image(email, image_path):
     msg['To'] = Receiver_Email
     msg['Subject'] = 'Rendered Image'
 
-    body = 'Hi,\n\nPlease find the attached rendered image.\n\nBest regards,\nMohit'
+    body = 'Hi,\n\nPlease find the attached rendered image.\n\nBest regards,\nViscommerce Team'
     msg.attach(MIMEText(body, 'plain'))
 
     # Attach the rendered image to the email message
